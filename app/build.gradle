@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.developer.load.testhook"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            moduleName "TestHook"
+            abiFilters 'armeabi-v7a'
+            ldLibs "log"
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+//task buildMyJar(type: Jar, dependsOn: ['build']) {
+//    archiveName = 'origin.jar'
+//    from('libs')
+//    from('build/intermediates/classes/debug')
+//    destinationDir = file('build/libs')
+//    exclude('com/android/test/library/BuildConfig.class')
+//    exclude('*R.class')
+//    include('com/developer/load/testhook/Common.class')
+//    include('com/developer/load/testhook/Hook.class')
+//    include('com/developer/load/testhook/LauncherInvader.class')
+//    include('com/developer/load/testhook/MenuClick.class')
+//}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //    testCompile 'junit:junit:4.12'
+    provided files('libs/XposedBridgeApi-54.jar')
+}
