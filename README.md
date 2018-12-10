@@ -10,6 +10,6 @@
 
 ## 2 ## 
 <ul>
-  <li>可以使用 PathClassLoader 更新 Xposed 插件程序代码(该项目未实现) </li>
+  <li>可以使用 PathClassLoader 更新 Xposed 插件程序代码 (在 MainActivity 中实现了 Demo ) </li>
 </ul>
  
